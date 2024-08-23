@@ -20,3 +20,12 @@ def get_current_weather(request):
         return JsonResponse(data)
     else:
         return JsonResponse({'error': 'Unable to fetch weather data'}, status=response.status_code)
+
+def get_image(request):
+    description = request.GET.get('description')
+    if not description:
+        return JsonResponse({'error': 'Description is required'}, status=400)
+
+    # Using OpenWeatherMap's icon as the image
+    image_url = f"http://openweathermap.org/img/wn/{description}@2x.png"
+    return JsonResponse({'image_url': image_url})
