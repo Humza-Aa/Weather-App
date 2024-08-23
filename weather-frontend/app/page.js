@@ -8,25 +8,16 @@ export default function Home() {
   const [weathers, setWeathers] = useState({});
   const [currentCity, setCurrentCity] = useState("");
 
-  const validateImageUrl = async (url) => {
-    try {
-      const response = await axios.get(url, { responseType: "blob" });
-      return response.status === 200;
-    } catch (error) {
-      return false;
-    }
-  };
-
   const fetchWeather = async (city) => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/weather/?city=${city}`
+        `http://127.0.0.1:8000/api/weather/?city=${city}`
       );
 
       if (response.data && response.data.main) {
         const icon = response.data.weather[0].icon;
         const imageResponse = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/image/?description=${icon}`
+          `http://127.0.0.1:8000/api/image/?description=${icon}`
         );
 
         const weatherWithImage = {
