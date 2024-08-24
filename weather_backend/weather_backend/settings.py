@@ -129,4 +129,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# This is just a temporary key, and in production will not be present.
 WEATHER_API_KEY = '95cf289e129433497f61f5781fe315dd'
